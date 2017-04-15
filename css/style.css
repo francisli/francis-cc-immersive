@@ -1,0 +1,36 @@
+html, body {
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.card {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.card img {
+  display: block;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.card h1 {
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.card h2 {
+  font-weight: normal;
+  font-size: 16px;
+  color: gray;
+  margin-top: 0;
+}
+
+.card p {
+  margin-bottom: 0;
+}
