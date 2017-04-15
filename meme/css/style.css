@@ -1,0 +1,79 @@
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  text-align: center;
+}
+
+.keyboard {
+  position: relative;
+  list-style-type: none;
+  padding: 0;
+  border: 1px solid black;
+  width: 299px;
+  margin: 0 auto;
+}
+
+.keyboard__key {
+  position: relative;
+  border-bottom: 1px solid black;
+  height: 39px;
+  cursor: pointer;
+}
+
+.keyboard__key:hover {
+  background: gray;
+}
+
+.keyboard__key:last-child {
+  border: 0
+}
+
+.keyboard__key--black {
+  background: black;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  height: 29px;
+  width: 199px;
+  position: absolute;
+  right: 0;
+  margin: -15px 0 0 auto;
+  z-index: 10000;
+}
+
+.callout {
+  display: none;
+  position: absolute;
+  z-index: 100000;
+  left: -360px;
+  width: 360px;
+  top: -100px;
+}
+
+.callout__content {
+  width: 300px;
+  background: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.callout p:first-child {
+  margin-top: 0;
+}
+
+.callout p:last-child {
+  margin-bottom: 0;
+}
+
+.callout img {
+  width: 100%;
+  height: auto;
+}
+
+.keyboard__key:hover .callout {
+  display: block;
+}
