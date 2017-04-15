@@ -7,9 +7,9 @@ html, body {
 .card {
   border: 1px solid lightgray;
   border-radius: 10px;
-  padding: 20px;
+  padding: 19px;
   text-align: center;
-  width: 300px;
+  width: 260px;
   margin: 0 auto;
 }
 
