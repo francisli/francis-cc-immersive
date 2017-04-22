@@ -34,6 +34,11 @@ $(document).ready(function() {
   };
 
   var freqs = {
+    c3: 130.813,
+    'c3-sharp': 138.591,
+    d3: 146.832,
+    'd3-sharp': 155.563,
+    e3: 164.814,
     f3: 174.614,
     'f3-sharp': 184.997,
     g3: 195.998,
@@ -65,12 +70,290 @@ $(document).ready(function() {
     sounds[note] = new Sound(freqs[note]);
   }
 
+  var music = [
+    {
+      note: 'c4',
+      duration: 250,
+    },
+    {
+      note: 'e4',
+      duration: 250,
+    },
+    {
+      note: 'g4',
+      duration: 250,
+    },
+    {
+      note: 'e4',
+      duration: 250,
+    },
+    {
+      note: 'c4',
+      duration: 250,
+    },
+    {
+      note: 'e4',
+      duration: 125,
+    },
+    {
+      note: 'g4',
+      duration: 375,
+    },
+    {
+      note: 'e4',
+      duration: 250,
+    },
+    {
+      note: 'a3',
+      duration: 250,
+    },
+    {
+      note: 'c4',
+      duration: 250,
+    },
+    {
+      note: 'e4',
+      duration: 250,
+    },
+    {
+      note: 'c4',
+      duration: 250,
+    },
+    {
+      note: 'a3',
+      duration: 250,
+    },
+    {
+      note: 'c4',
+      duration: 125,
+    },
+    {
+      note: 'e4',
+      duration: 375,
+    },
+    {
+      note: 'c4',
+      duration: 250,
+    },
+    {
+      note: 'g3',
+      duration: 250,
+    },
+    {
+      note: 'b3',
+      duration: 250,
+    },
+    {
+      note: 'd4',
+      duration: 125,
+      rest: 125
+    },
+    {
+      note: 'b3',
+      duration: 125,
+    },
+    {
+      note: 'g3',
+      duration: 250,
+    },
+    {
+      note: 'b3',
+      duration: 250,
+    },
+    {
+      note: 'd4',
+      duration: 250,
+    },
+    {
+      note: 'b3',
+      duration: 250,
+      rest: 125
+    },
+    {
+      note: 'g3',
+      duration: 125,
+      rest: 125
+    },
+    {
+      note: 'g3',
+      duration: 125,
+      rest: 0
+    },
+    {
+      note: 'g3',
+      duration: 125,
+      rest: 250
+    },
+    {
+      note: 'g3',
+      duration: 125,
+      rest: 0
+    },
+    {
+      note: 'g3',
+      duration: 125,
+      rest: 125
+    },
+    {
+      note: 'g3',
+      duration: 125,
+      rest: 125
+    },
+    {
+      note: 'g3',
+      duration: 125,
+      rest: 125
+    },
+    {
+      note: 'g3',
+      duration: 125,
+      rest: 125
+    },
+    {
+      note: 'g3',
+      duration: 125,
+      rest: 0
+    },
+    {
+      note: 'c4',
+      duration: 250,
+    },
+    {
+      note: 'e4',
+      duration: 250,
+    },
+    {
+      note: 'g4',
+      duration: 250,
+    },
+    {
+      note: 'e4',
+      duration: 125,
+    },
+    {
+      note: 'c4',
+      duration: 375,
+    },
+    {
+      note: 'e4',
+      duration: 250,
+    },
+    {
+      note: 'g4',
+      duration: 250,
+    },
+    {
+      note: 'e4',
+      duration: 250,
+    },
+    {
+      note: 'b3',
+      duration: 250,
+    },
+    {
+      note: 'd4',
+      duration: 250,
+    },
+    {
+      note: 'f4',
+      duration: 250,
+    },
+    {
+      note: 'd4',
+      duration: 125,
+    },
+    {
+      note: 'b3',
+      duration: 375,
+    },
+    {
+      note: 'd4',
+      duration: 250,
+    },
+    {
+      note: 'f4',
+      duration: 250,
+    },
+    {
+      note: 'd4',
+      duration: 250,
+    },
+    {
+      note: 'a3',
+      duration: 250,
+    },
+    {
+      note: 'c4',
+      duration: 125,
+    },
+    {
+      note: 'e4',
+      duration: 375,
+    },
+    {
+      note: 'c4',
+      duration: 250,
+    },
+    {
+      note: 'a3',
+      duration: 250,
+    },
+    {
+      note: 'c4',
+      duration: 125,
+    },
+    {
+      note: 'e4',
+      duration: 375,
+    },
+    {
+      note: 'c4',
+      duration: 250,
+    },
+    {
+      note: 'g3',
+      duration: 1000,
+    }
+  ];
+
+  var tempo = 1.25;
+  var playMusic = function(i) {
+    if (i < music.length) {
+      var n = music[i];
+      var sound = sounds[n.note];
+      var $key = $('#' + n.note);
+      $key.addClass('hover');
+      sound.play();
+      setTimeout(function() {
+        sound.stop();
+        $key.removeClass('hover');
+        var rest = n.rest || 0;
+        setTimeout(function() {
+          playMusic(i + 1);
+        }, tempo * rest);
+      }, tempo * n.duration);
+    } else {
+      playing = false;
+      $('#play').prop('disabled', false);
+    }
+  }
+
+  var playing = false;
+  $('#play').on('click', function() {
+    $(this).prop('disabled', true);
+    if (!playing) {
+      playMusic(0);
+    }
+  });
+
   $('.keyboard__key').on('mouseenter', function() {
-    var id = $(this).attr('id');
-    var sound = sounds[id];
-    sound.play();
-    setTimeout(function() {
-      sound.stop();
-    }, 200);
+    if (!playing) {
+      var id = $(this).attr('id');
+      var sound = sounds[id];
+      sound.play();
+      setTimeout(function() {
+        sound.stop();
+      }, 200);
+    }
   });
 });
